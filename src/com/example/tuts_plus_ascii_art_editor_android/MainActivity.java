@@ -69,6 +69,8 @@ public class MainActivity extends Activity implements OnClickListener {
 		
 		if (Environment.MEDIA_MOUNTED.equals(state)) {
 			File picDir = Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_PICTURES);
+			// Make sure the Pictures directory exists.
+	        picDir.mkdirs();
 			/*
 			 The image is going to contain the visible content of the editable text-field, including the 
 			 background color – i.e. it will display what you can see looking at the app screen when you 
@@ -89,12 +91,12 @@ public class MainActivity extends Activity implements OnClickListener {
 			//Here we specify the filename, now let’s create the file using it together 
 			//with the path to the Pictures directory:
 			File picFile = new File(picDir+"/"+fileName);
+				Toast.makeText(getApplicationContext(), "WTF does this work? picFile: "+picFile, Toast.LENGTH_SHORT).show();
 			/* Try/catch allows the program to keep running if something goes wrong 
 			 *  with the input/ output operations. 
 			 */
 			try {
 				// create the file and pass it to an output stream:
-				Toast.makeText(getApplicationContext(), "WTF does this work? ", Toast.LENGTH_SHORT).show();
 				picFile.createNewFile();
 				FileOutputStream picOut = new FileOutputStream(picFile);
 				// compress the bitmap and write it to the output stream
